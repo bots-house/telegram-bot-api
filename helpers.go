@@ -744,6 +744,15 @@ func NewInlineKeyboardButtonSwitch(text, sw string) InlineKeyboardButton {
 	}
 }
 
+// NewInlineKeyboardButtonLoginURL creates an inline keyboard button with
+// text which allows the user to login on websites.
+func NewInlineKeyboardButtonLoginURL(text string, login *LoginURL) InlineKeyboardButton {
+	return InlineKeyboardButton{
+		Text:     text,
+		LoginURL: login,
+	}
+}
+
 // NewInlineKeyboardRow creates an inline keyboard row with buttons.
 func NewInlineKeyboardRow(buttons ...InlineKeyboardButton) []InlineKeyboardButton {
 	var row []InlineKeyboardButton
