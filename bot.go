@@ -301,6 +301,10 @@ func (bot *BotAPI) Send(c Chattable) (Message, error) {
 	}
 }
 
+func (bot *BotAPI) EditMessageText(c Chattable) (Message, error) {
+	return bot.sendChattable(c)
+}
+
 // debugLog checks if the bot is currently running in debug mode, and if
 // so will display information about the request and response in the
 // debug log.

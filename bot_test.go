@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/go-telegram-bot-api/telegram-bot-api"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
 const (
@@ -16,6 +16,7 @@ const (
 	ChatID                  = 76918703
 	SupergroupChatID        = -1001120141283
 	ReplyToMessageID        = 35
+	MessageID               = 1
 	ExistingPhotoFileID     = "AgADAgADw6cxG4zHKAkr42N7RwEN3IFShCoABHQwXEtVks4EH2wBAAEC"
 	ExistingDocumentFileID  = "BQADAgADOQADjMcoCcioX1GrDvp3Ag"
 	ExistingAudioFileID     = "BQADAgADRgADjMcoCdXg3lSIN49lAg"
@@ -65,6 +66,18 @@ func TestSendWithMessage(t *testing.T) {
 	msg := tgbotapi.NewMessage(ChatID, "A test message from the test library in telegram-bot-api")
 	msg.ParseMode = "markdown"
 	_, err := bot.Send(msg)
+
+	if err != nil {
+		t.Error(err)
+		t.Fail()
+	}
+}
+
+func TestEditMessageText(t *testing.T) {
+	bot, _ := getBot(t)
+	msg := tgbotapi.NewEditMessageText(ChatID, MessageID, "test")
+	msg.ParseMode = "HTML"
+	_, err := bot.EditMessageText(msg)
 
 	if err != nil {
 		t.Error(err)
